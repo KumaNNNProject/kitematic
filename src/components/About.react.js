@@ -20,13 +20,13 @@ var Preferences = React.createClass({
   },
   handleGoBackClick: function () {
     this.goBack();
-    metrics.track('Went Back From About');
+    metrics.track('从关于中返回');
   },
   render: function () {
     return (
       <div className="preferences">
         <div className="about-content">
-          <a onClick={this.handleGoBackClick}>Go Back</a>
+          <a onClick={this.handleGoBackClick}>返回</a>
           <div className="items">
             <div className="item">
               <RetinaImage src="cartoon-kitematic.png"/>
@@ -34,7 +34,7 @@ var Preferences = React.createClass({
               <p>{packages.version}</p>
             </div>
           </div>
-          <h3>Kitematic is built with:</h3>
+          <h3>Kitematic 构建用:</h3>
           <div className="items">
             <div className="item">
               <RetinaImage src="cartoon-docker.png"/>
@@ -46,7 +46,7 @@ var Preferences = React.createClass({
               <p>{packages["docker-machine-version"]}</p>
             </div>
           </div>
-          <h3>Third-Party Software</h3>
+          <h3>第三方软件</h3>
           <div className="items">
             <div className="item">
               <h4>VirtualBox</h4>

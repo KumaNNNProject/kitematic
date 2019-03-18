@@ -36,12 +36,12 @@ module.exports = React.createClass({
   handleSkip: function () {
     accountActions.skip();
     this.transitionTo('search');
-    metrics.track('Skipped Login');
+    metrics.track('跳过登录');
   },
 
   handleClose: function () {
     this.goBack();
-    metrics.track('Closed Login');
+    metrics.track('关闭登录');
   },
 
   update: function () {
@@ -50,8 +50,8 @@ module.exports = React.createClass({
 
   render: function () {
     let close = this.state.prompted ?
-        <a className="btn btn-action btn-close" disabled={this.state.loading} onClick={this.handleClose}>Close</a> :
-        <a className="btn btn-action btn-skip"  disabled={this.state.loading} onClick={this.handleSkip}>Skip For Now</a>;
+        <a className="btn btn-action btn-close" disabled={this.state.loading} onClick={this.handleClose}>关闭</a> :
+        <a className="btn btn-action btn-skip"  disabled={this.state.loading} onClick={this.handleSkip}>现在跳过</a>;
 
     return (
       <div className="setup">
@@ -64,8 +64,8 @@ module.exports = React.createClass({
           </div>
           <div className="desc">
             <div className="content">
-              <h1>Connect to Docker Hub</h1>
-              <p>Pull and run private Docker Hub images by connecting your Docker Hub account to Kitematic.</p>
+              <h1>连接到Docker Hub</h1>
+              <p>通过将Docker Hub帐户连接到Kitematic，拉取并运行私有Docker Hub镜像.</p>
             </div>
           </div>
         </div>

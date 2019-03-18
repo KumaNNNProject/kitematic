@@ -1,0 +1,8 @@
+已修改内容
+src/components/*
+
+
+------------------------------------------------
+Action：与系统交互（Docker Engine，Docker Machine，Registries，Hub等）
+Components：View Components，视图组成UI，并触发可用操作。
+Stores：Stores存储应用程序的状态。

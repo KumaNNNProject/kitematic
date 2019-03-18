@@ -143,7 +143,7 @@ var ImageCard = React.createClass({
     if (this.props.image.namespace === 'library') {
       name = (
         <div>
-          <div className="namespace official">official</div>
+          <div className="namespace official">官方</div>
           <span className="repo">{this.props.image.name}</span>
         </div>
       );
@@ -161,7 +161,7 @@ var ImageCard = React.createClass({
     } else if (this.props.image.short_description) {
       description = this.props.image.short_description;
     } else {
-      description = 'No description.';
+      description = '没有描述.';
     }
     var logoStyle = {
       backgroundColor: this.props.image.gradient_start
@@ -176,7 +176,7 @@ var ImageCard = React.createClass({
     if (this.state.loading) {
       tags = <RetinaImage className="items-loading" src="loading.png"/>;
     } else if (this.state.tags.length === 0) {
-      tags = <div className="no-items">No Tags</div>;
+      tags = <div className="no-items">没有标签</div>;
     } else {
       var tagDisplay = this.state.tags.filter(tag => tag.name.includes(this.state.searchTag)).map((tag) => {
         let t = '';
@@ -239,19 +239,19 @@ var ImageCard = React.createClass({
             <span className="icon icon-more"></span>
           </div>
           <div className="action" onClick={this.handleClick}>
-            CREATE
+            创建
           </div>
         </div>
       );
       overlay = (
         <div className="overlay menu-overlay">
           <div className="menu-item" onClick={this.handleTagOverlayClick.bind(this, this.props.image.name)}>
-            <span className="icon icon-tag"></span><span className="text">SELECTED TAG: <span className="selected-item">{this.state.chosenTag}</span></span>
+            <span className="icon icon-tag"></span><span className="text">选择标签: <span className="selected-item">{this.state.chosenTag}</span></span>
           </div>
           <div className="remove" onClick={this.handleDeleteImgClick.bind(this, this.props.image)}>
-            <span className="btn btn-delete btn-action has-icon btn-hollow" disabled={this.props.image.inUse ? 'disabled' : null}><span className="icon icon-delete"></span>Delete Tag</span>
+            <span className="btn btn-delete btn-action has-icon btn-hollow" disabled={this.props.image.inUse ? 'disabled' : null}><span className="icon icon-delete"></span>删除标签</span>
           </div>
-          {this.props.image.inUse ? <p className="small">To delete, remove all containers<br/>using the above image</p> : null }
+          {this.props.image.inUse ? <p className="small">将删除，移除<br/>使用上面镜像的所有容器</p> : null }
           <div className="close-overlay">
             <a className="btn btn-action circular" onClick={this.handleCloseMenuOverlay}><span className="icon icon-delete"></span></a>
           </div>
@@ -272,7 +272,7 @@ var ImageCard = React.createClass({
             <span className="icon icon-more"></span>
           </div>
           <div className="action" onClick={this.handleClick}>
-            CREATE
+            创建
           </div>
         </div>
       );
@@ -280,13 +280,13 @@ var ImageCard = React.createClass({
       overlay = (
           <div className="overlay menu-overlay">
             <div className="menu-item" onClick={this.handleTagOverlayClick.bind(this, this.props.image.name)}>
-              <span className="icon icon-tag"></span><span className="text">SELECTED TAG: <span className="selected-item">{this.state.chosenTag}</span></span>
+              <span className="icon icon-tag"></span><span className="text">选择标签: <span className="selected-item">{this.state.chosenTag}</span></span>
             </div>
             <div className="menu-item" onClick={this.handleNetworkOverlayClick.bind(this, this.props.image.name)}>
-              <span className="icon icon-link"></span><span className="text">DEFAULT NETWORK: <span className="selected-item">{this.state.defaultNetwork}</span></span>
+              <span className="icon icon-link"></span><span className="text">默认网络: <span className="selected-item">{this.state.defaultNetwork}</span></span>
             </div>
             <div className="menu-item" onClick={this.handleRepoClick}>
-              <span className="icon icon-open-external"></span><span className="text">VIEW ON DOCKER HUB</span>
+              <span className="icon icon-open-external"></span><span className="text">显示在 Docker Hub</span>
             </div>
             <div className="close-overlay">
               <a className="btn btn-action circular" onClick={this.handleCloseMenuOverlay}><span className="icon icon-delete"></span></a>
@@ -306,7 +306,7 @@ var ImageCard = React.createClass({
               ref="searchTagInput"
               style={searchTagInputStyle}
               type="text"
-              placeholder="Filter image tag."
+              placeholder="筛选镜像标签."
               onChange={this.searchTag}
             />
           </p>
@@ -316,7 +316,7 @@ var ImageCard = React.createClass({
           </div>
         </div>
         <div className="overlay item-overlay network-overlay">
-          <p>Please select an default network.</p>
+          <p>请选择默认网络.</p>
           {networks}
           <div className="close-overlay" onClick={this.handleCloseNetworkOverlay}>
             <a className="btn btn-action circular"><span className="icon icon-delete"></span></a>

@@ -128,10 +128,10 @@ var Containers = React.createClass({
         <div className="containers-body">
           <div className="sidebar">
             <section className={sidebarHeaderClass}>
-              <h4>Containers</h4>
+              <h4>容器</h4>
               <div className="create">
                 <Router.Link to="search">
-                  <span className="btn btn-new btn-action has-icon btn-hollow"><span className="icon icon-add"></span>New</span>
+                  <span className="btn btn-new btn-action has-icon btn-hollow"><span className="icon icon-add"></span>新建</span>
                 </Router.Link>
               </div>
             </section>
@@ -139,7 +139,7 @@ var Containers = React.createClass({
               <ContainerList containers={this.state.sorted} newContainer={this.state.newContainer} />
             </section>
             <section className="sidebar-buttons">
-              <span className="btn-sidebar btn-terminal" onClick={this.handleClickDockerTerminal} ><span className="icon icon-docker-cli"></span><span className="text">DOCKER CLI</span></span>
+              <span className="btn-sidebar btn-terminal" onClick={this.handleClickDockerTerminal} ><span className="icon icon-docker-cli"></span><span className="text">Docker命令行</span></span>
               <span className="btn-sidebar btn-feedback" onClick={this.handleClickReportIssue} ><span className="icon icon-feedback"></span></span>
               <span className="btn-sidebar btn-preferences" onClick={this.handleClickPreferences} ><span className="icon icon-preferences"></span></span>
             </section>

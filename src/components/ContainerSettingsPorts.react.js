@@ -30,7 +30,7 @@ var ContainerSettingsPorts = React.createClass({
     };
   },
   handleViewLink: function (url) {
-    metrics.track('Opened In Browser', {
+    metrics.track('打开在浏览器', {
       from: 'settings'
     });
     shell.openExternal('http://' + url);
@@ -101,15 +101,15 @@ var ContainerSettingsPorts = React.createClass({
     });
 
     if (!port.match(/^[0-9]+$/g)) {
-      ports[key].error = 'Needs to be an integer.';
+      ports[key].error = '必须是整数.';
     } else if (port <= 0 || port > 65535) {
-      ports[key].error = 'Needs to be in range <1,65535>.';
+      ports[key].error = '需要在范围 <1,65535> 内.';
     } else if (otherPorts[port]) {
-      ports[key].error = 'Collision with container "' + otherPorts[port] + '"';
+      ports[key].error = '冲突与容器的 "' + otherPorts[port] + '"';
     } else if (duplicates.length > 0) {
-      ports[key].error = 'Collision with another port in this container.';
+      ports[key].error = '与此容器中的另一个端口冲突.';
     } else if (port === 22 || port === 2376) {
-      ports[key].error = 'Ports 22 and 2376 are reserved ports for Kitematic/Docker.';
+      ports[key].error = '端口22和2376是Kitematic/Docker的保留端口.';
     }
   },
   handleChangePort: function (key, e) {
@@ -243,19 +243,19 @@ var ContainerSettingsPorts = React.createClass({
     return (
       <div className="settings-panel">
         <div className="settings-section">
-          <h3>Configure Hostname</h3>
+          <h3>配置主机名</h3>
           <div className="container-info-row">
-            <div className="label-hostname">HOSTNAME</div>
+            <div className="label-hostname">主机名</div>
             <input id="hostname" className="line" type="text" disabled={isUpdating} value={this.state.hostname} onChange={this.handleChangeHostnameEnabled}/>
           </div>
         </div>
         <div className="settings-section">
-          <h3>Configure Ports</h3>
+          <h3>配置端口</h3>
           <table className="table ports">
             <thead>
               <tr>
-                <th>DOCKER PORT</th>
-                <th>PUBLISHED IP:PORT</th>
+                <th>Docker 端口</th>
+                <th>发布 IP:端口</th>
                 <th></th>
               </tr>
             </thead>
@@ -266,7 +266,7 @@ var ContainerSettingsPorts = React.createClass({
           <a className="btn btn-action"
              disabled={isUpdating || !isValid}
              onClick={this.handleSave}>
-            Save
+            保存
           </a>
         </div>
       </div>

@@ -29,15 +29,15 @@ module.exports = React.createClass({
   validate: function () {
     let errors = {};
     if (!validator.isLowercase(this.state.username) || !validator.isAlphanumeric(this.state.username) || !validator.isLength(this.state.username, 4, 30)) {
-      errors.username = 'Must be 4-30 lower case letters or numbers';
+      errors.username = '必须是4-30个小写字母或数字';
     }
 
     if (!validator.isLength(this.state.password, 5)) {
-      errors.password = 'Must be at least 5 characters long';
+      errors.password = '必须至少有5个字符长';
     }
 
     if (!validator.isEmail(this.state.email)) {
-      errors.email = 'Must be a valid email address';
+      errors.email = '必须是有效的电子邮件地址';
     }
     return errors;
   },
@@ -52,14 +52,14 @@ module.exports = React.createClass({
 
     if (_.isEmpty(errors)) {
       accountActions.signup(this.state.username, this.state.password, this.state.email, this.state.subscribe);
-      metrics.track('Clicked Sign Up');
+      metrics.track('点击注册');
     }
   },
 
   handleClickLogin: function () {
     if (!this.props.loading) {
       this.replaceWith('login');
-      metrics.track('Switched to Log In');
+      metrics.track('已切换到登录');
     }
   },
 
@@ -67,24 +67,24 @@ module.exports = React.createClass({
     let loading = this.props.loading ? <div className="spinner la-ball-clip-rotate la-dark"><div></div></div> : null;
     return (
       <form className="form-connect" onSubmit={this.handleSignUp}>
-        <input ref="usernameInput" maxLength="30" name="username" placeholder="Username" type="text" disabled={this.props.loading} valueLink={this.linkState('username')} onBlur={this.handleBlur}/>
+        <input ref="usernameInput" maxLength="30" name="username" placeholder="用户名" type="text" disabled={this.props.loading} valueLink={this.linkState('username')} onBlur={this.handleBlur}/>
         <p className="error-message">{this.state.errors.username}</p>
-        <input ref="emailInput" name="email" placeholder="Email" type="text" valueLink={this.linkState('email')} disabled={this.props.loading} onBlur={this.handleBlur}/>
+        <input ref="emailInput" name="email" placeholder="邮箱" type="text" valueLink={this.linkState('email')} disabled={this.props.loading} onBlur={this.handleBlur}/>
         <p className="error-message">{this.state.errors.email}</p>
-        <input ref="passwordInput" name="password" placeholder="Password" type="password" valueLink={this.linkState('password')} disabled={this.props.loading} onBlur={this.handleBlur}/>
+        <input ref="passwordInput" name="password" placeholder="密码" type="password" valueLink={this.linkState('password')} disabled={this.props.loading} onBlur={this.handleBlur}/>
         <p className="error-message">{this.state.errors.password}</p>
         <div className="checkbox">
         <label>
-          <input type="checkbox" disabled={this.props.loading} checkedLink={this.linkState('subscribe')}/> Subscribe to the Docker newsletter.
+          <input type="checkbox" disabled={this.props.loading} checkedLink={this.linkState('subscribe')}/> 订阅Docker通讯.
         </label>
         </div>
         <p className="error-message">{this.state.errors.detail}</p>
         <div className="submit">
           {loading}
-          <button className="btn btn-action" disabled={this.props.loading} type="submit">Sign Up</button>
+          <button className="btn btn-action" disabled={this.props.loading} type="submit">注册</button>
         </div>
         <br/>
-        <div className="extra">Already have an account? <a disabled={this.state.loading} onClick={this.handleClickLogin}>Log In</a></div>
+        <div className="extra">已经有账户了? <a disabled={this.state.loading} onClick={this.handleClickLogin}>登录</a></div>
       </form>
     );
   }

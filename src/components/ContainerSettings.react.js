@@ -42,27 +42,27 @@ var ContainerSettings = React.createClass({
             <ul>
               <Router.Link to="containerSettingsGeneral" params={{name: container.Name}}>
                 <li>
-                  General
+                  一般
                 </li>
               </Router.Link>
               <Router.Link to="containerSettingsPorts" params={{name: container.Name}}>
                 <li>
-                  Hostname / Ports 
+                  主机名 / 端口 
                 </li>
               </Router.Link>
               <Router.Link to="containerSettingsVolumes" params={{name: container.Name}}>
                 <li>
-                  Volumes
+                  卷
                 </li>
               </Router.Link>
               <Router.Link to="containerSettingsNetwork" params={{name: container.Name}}>
                 <li>
-                  Network
+                  网络
                 </li>
               </Router.Link>
               <Router.Link to="containerSettingsAdvanced" params={{name: container.Name}}>
                 <li>
-                  Advanced
+                  高级
                 </li>
               </Router.Link>
             </ul>

@@ -21,12 +21,12 @@ var ContainerSettingsVolumes = React.createClass({
         dialog.showMessageBox({
           type: 'warning',
           buttons: ['OK'],
-          message: 'Invalid directory - Please make sure the directory exists and you can read/write to it.'
+          message: '无效目录-请确保该目录存在，并且您可以对其进行读/写操作.'
         });
         return;
       }
 
-      metrics.track('Choose Directory for Volume');
+      metrics.track('选择卷目录');
 
       let mounts = _.clone(this.props.container.Mounts);
       _.each(mounts, m => {
@@ -46,7 +46,7 @@ var ContainerSettingsVolumes = React.createClass({
     });
   },
   handleRemoveVolumeClick: function (dockerVol) {
-    metrics.track('Removed Volume Directory', {
+    metrics.track('已删除卷目录', {
       from: 'settings'
     });
 
@@ -67,7 +67,7 @@ var ContainerSettingsVolumes = React.createClass({
     containerActions.update(this.props.container.Name, {Mounts: mounts, HostConfig: hostConfig});
   },
   handleOpenVolumeClick: function (path) {
-    metrics.track('Opened Volume Directory', {
+    metrics.track('打开的卷目录', {
       from: 'settings'
     });
     if (util.isWindows()) {
@@ -86,7 +86,7 @@ var ContainerSettingsVolumes = React.createClass({
       let source = m.Source, destination = m.Destination;
       if (!m.Source || (!util.isNative() && m.Source.indexOf(homeDir) === -1) || (m.Source.indexOf('/var/lib/docker/volumes') !== -1)) {
         source = (
-          <span className="value-right">No Folder</span>
+          <span className="value-right">无文件夹</span>
         );
       } else {
         let local = util.isWindows() ? util.linuxToWindowsPath(source) : source;
@@ -99,8 +99,8 @@ var ContainerSettingsVolumes = React.createClass({
           <td>{destination}</td>
           <td>{source}</td>
           <td>
-            <a className="btn btn-action small" disabled={this.props.container.State.Updating} onClick={this.handleChooseVolumeClick.bind(this, destination)}>Change</a>
-            <a className="btn btn-action small" disabled={this.props.container.State.Updating} onClick={this.handleRemoveVolumeClick.bind(this, destination)}>Remove</a>
+            <a className="btn btn-action small" disabled={this.props.container.State.Updating} onClick={this.handleChooseVolumeClick.bind(this, destination)}>更改</a>
+            <a className="btn btn-action small" disabled={this.props.container.State.Updating} onClick={this.handleRemoveVolumeClick.bind(this, destination)}>移除</a>
           </td>
         </tr>
       );
@@ -108,12 +108,12 @@ var ContainerSettingsVolumes = React.createClass({
     return (
       <div className="settings-panel">
         <div className="settings-section">
-          <h3>Configure Volumes</h3>
+          <h3>配置卷</h3>
           <table className="table volumes">
             <thead>
               <tr>
-                <th>DOCKER FOLDER</th>
-                <th>LOCAL FOLDER</th>
+                <th>Docker 文件夹</th>
+                <th>本地文件夹</th>
                 <th></th>
               </tr>
             </thead>

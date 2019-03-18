@@ -96,7 +96,7 @@ module.exports = React.createClass({
     });
 
     _searchPromise = Promise.delay(200).then(() => {
-      metrics.track('Searched for Images');
+      metrics.track('搜索镜像');
       _searchPromise = null;
       repositoryActions.search(query, page);
     }).catch(Promise.CancellationError, () => {});
@@ -131,13 +131,13 @@ module.exports = React.createClass({
 
     this.transitionTo('search', {}, {filter: filter});
 
-    metrics.track('Filtered Results', {
+    metrics.track('筛选结果', {
       filter: filter
     });
   },
   handleCheckVerification: function () {
     accountActions.verify();
-    metrics.track('Verified Account', {
+    metrics.track('已验证帐户', {
       from: 'search'
     });
   },
@@ -208,7 +208,7 @@ module.exports = React.createClass({
     ) : null;
     let errorMsg = null;
     if (this.state.error === null || this.state.error.message.indexOf('getaddrinfo ENOTFOUND') !== -1) {
-      errorMsg = 'There was an error contacting Docker Hub.';
+      errorMsg = '联系Docker Hub时出错.';
     } else {
       errorMsg = this.state.error.message.replace('HTTP code is 409 which indicates error: conflict - ', '');
     }
@@ -222,7 +222,7 @@ module.exports = React.createClass({
     } else if (filter === 'userrepos' && !accountStore.getState().username) {
       results = (
         <div className="no-results">
-          <h2><Router.Link to="login">Log In</Router.Link> or <Router.Link to="signup">Sign Up</Router.Link> to access your Docker Hub repositories.</h2>
+          <h2><Router.Link to="login">登录</Router.Link> 或 <Router.Link to="signup">注册</Router.Link> 来访问你的Docker Hub存储库.</h2>
           <RetinaImage src="connect-art.png" checkIfRetinaImgExists={false}/>
         </div>
       );
@@ -231,7 +231,7 @@ module.exports = React.createClass({
       let spinner = this.state.accountLoading ? <div className="spinner la-ball-clip-rotate la-dark"><div></div></div> : null;
       results = (
         <div className="no-results">
-          <h2>Please verify your Docker Hub account email address</h2>
+          <h2>请验证您的Docker Hub帐户电子邮件地址</h2>
           <div className="verify">
             <button className="btn btn-action" onClick={this.handleCheckVerification}>{'I\'ve Verified My Email Address'}</button> {spinner}
           </div>
@@ -255,7 +255,7 @@ module.exports = React.createClass({
       let userImageResults = userImageItems.length ? (
         <div className="result-grids">
           <div>
-            <h4>My Images</h4>
+            <h4>我的镜像</h4>
             <div className="result-grid">
               {userImageItems}
             </div>
@@ -263,7 +263,7 @@ module.exports = React.createClass({
         </div>
       ) : (
         <div className="no-results">
-          <h2>Cannot find any local image.</h2>
+          <h2>找不到任何本地镜像.</h2>
         </div>
       );
       results = (
@@ -274,7 +274,7 @@ module.exports = React.createClass({
       results = (
         <div className="no-results">
           <div className="loader">
-            <h2>Loading Images</h2>
+            <h2>加载镜像中</h2>
             <div className="spinner la-ball-clip-rotate la-dark la-lg"><div></div></div>
           </div>
         </div>
@@ -291,7 +291,7 @@ module.exports = React.createClass({
 
       let recommendedResults = recommendedItems.length ? (
         <div>
-          <h4>Recommended</h4>
+          <h4>推荐</h4>
           <div className="result-grid">
             {recommendedItems}
           </div>
@@ -304,7 +304,7 @@ module.exports = React.createClass({
       });
       let userRepoResults = userRepoItems.length ? (
         <div>
-          <h4>My Repositories</h4>
+          <h4>我的存储库</h4>
           <div className="result-grid">
             {userRepoItems}
           </div>
@@ -315,7 +315,7 @@ module.exports = React.createClass({
       if (otherItems.length) {
         otherResults = (
           <div>
-            <h4>Other Repositories</h4>
+            <h4>其他存储库</h4>
             <div className="result-grid">
               {otherItems}
             </div>
@@ -337,13 +337,13 @@ module.exports = React.createClass({
       if (this.state.query.length) {
         results = (
           <div className="no-results">
-            <h2>Cannot find a matching image.</h2>
+            <h2>找不到匹配的镜像.</h2>
           </div>
         );
       } else {
         results = (
           <div className="no-results">
-            <h2>No Images</h2>
+            <h2>没有镜像</h2>
           </div>
         );
       }
@@ -377,17 +377,17 @@ module.exports = React.createClass({
           <div className="new-container-header">
             <div className="search">
             <div className={searchClasses}>
-              <input type="search" ref="searchInput" className="form-control" placeholder="Search for Docker images from Docker Hub" onChange={this.handleChange}/>
+              <input type="search" ref="searchInput" className="form-control" placeholder="搜索Docker镜像来自Docker Hub" onChange={this.handleChange}/>
               <div className={magnifierClasses}></div>
               <div className={loadingClasses}><div></div></div>
             </div>
             </div>
             <div className="results-filters">
-              <span className="results-filter results-filter-title">FILTER BY</span>
-              <span className={`results-filter results-all tab ${filter === 'all' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'all')}>All</span>
-              <span className={`results-filter results-recommended tab ${filter === 'recommended' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'recommended')}>Recommended</span>
-              <span className={`results-filter results-userrepos tab ${filter === 'userrepos' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userrepos')}>My Repos</span>
-              <span className={`results-filter results-userimages tab ${filter === 'userimages' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userimages')}>My Images</span>
+              <span className="results-filter results-filter-title">过滤</span>
+              <span className={`results-filter results-all tab ${filter === 'all' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'all')}>所有</span>
+              <span className={`results-filter results-recommended tab ${filter === 'recommended' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'recommended')}>推荐</span>
+              <span className={`results-filter results-userrepos tab ${filter === 'userrepos' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userrepos')}>我的仓库</span>
+              <span className={`results-filter results-userimages tab ${filter === 'userimages' ? 'active' : ''}`} onClick={this.handleFilter.bind(this, 'userimages')}>我的镜像</span>
             </div>
           </div>
           <div className="results">

@@ -27,7 +27,7 @@ var FontSelect = React.createClass({
   render: function(){
     return (
       <select className='logs-font-size__select' value={this.props.fontSize} onChange={this.props.onChange}>
-        <option disabled="true" >Font size</option>
+        <option disabled="true" >字体大小</option>
         {this.getFontSizes(10, 30)}
       </select>
     );
@@ -85,17 +85,17 @@ module.exports = React.createClass({
         const key = `${this.props.container.Name}-${index}`;
         _logs = _logs.concat((l.substr(l.indexOf(' ')+1)).replace(/\[\d+m/g,'').concat('\n'));
         return <div key={key} dangerouslySetInnerHTML={{__html: convert.toHtml(escape(l.substr(l.indexOf(' ')+1)).replace(/ /g, '&nbsp;<wbr>'))}}></div>;
-      }) : ['0 No logs for this container.'];
+      }) : ['0 此容器没有日志.'];
 
     let copyLogs = (event) => {
       clipboard.writeText(_logs);
 
       let btn = event.target;
-      btn.innerHTML = 'Copied !';
+      btn.innerHTML = '已复制';
       btn.style.color = '#FFF';
       setTimeout(()=>{
         btn.style.color = 'inherit'
-        btn.innerHTML = 'Copy';
+        btn.innerHTML = '复制';
       }, 1000);
     };
 
@@ -120,17 +120,17 @@ module.exports = React.createClass({
       <div className="mini-logs wrapper">
         <div className="widget">
           <div className="top-bar">
-            <div className="text">Container Logs</div>
+            <div className="text">容器日志</div>
             <div>
               <label className="follow-logs__label">
-                Follow&nbsp;
+                跟随&nbsp;
                 <input type="checkbox" onChange={ this.toggleFollow } checked={ this.state.follow }></input>
               </label>
               <button className="save-logs__btn" onClick={saveLogs}>
                 <i className="icon icon-download"></i>
               </button>
               <FontSelect fontSize={this.state.fontSize} onChange={this.onFontChange} />
-              <button className="copy-logs__btn" onClick={copyLogs}>Copy</button>
+              <button className="copy-logs__btn" onClick={copyLogs}>复制</button>
             </div>
           </div>
           <div className="logs" style={{fontSize:this.state.fontSize+'px'}}>

@@ -80,7 +80,7 @@ var Header = React.createClass({
       menu.append(new MenuItem({ label: 'I\'ve Verified My Email Address', click: this.handleVerifyClick}));
     }
 
-    menu.append(new MenuItem({ label: 'Sign Out', click: this.handleLogoutClick}));
+    menu.append(new MenuItem({ label: '登出', click: this.handleLogoutClick}));
     menu.popup(remote.getCurrentWindow(), e.currentTarget.offsetLeft, e.currentTarget.offsetTop + e.currentTarget.clientHeight + 10);
   },
   handleLoginClick: function () {
@@ -151,7 +151,7 @@ var Header = React.createClass({
       username = (
         <div className="login-wrapper">
           <div className="login no-drag" onClick={this.handleLoginClick}>
-            <span className="icon icon-user"></span> LOGIN
+            <span className="icon icon-user"></span> 登录
           </div>
         </div>
       );

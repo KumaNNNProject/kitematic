@@ -18,11 +18,11 @@ var ContainerListItem = React.createClass({
     e.preventDefault();
     e.stopPropagation();
     dialog.showMessageBox({
-      message: 'Are you sure you want to stop & remove this container?',
-      buttons: ['Remove', 'Cancel']
+      message: '确定要停止并移除此容器?',
+      buttons: ['移除', '取消']
     }, function (index) {
       if (index === 0) {
-        metrics.track('Deleted Container', {
+        metrics.track('已删除容器', {
           from: 'list',
           type: 'existing'
         });
@@ -54,7 +54,7 @@ var ContainerListItem = React.createClass({
     var state;
     if (container.State.Downloading) {
       state = (
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>Downloading</Tooltip>}>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>下载中</Tooltip>}>
           <div className="state state-downloading">
             <div style={style} className="downloading-arrow"></div>
           </div>
@@ -62,31 +62,31 @@ var ContainerListItem = React.createClass({
       );
     } else if (container.State.Running && !container.State.Paused) {
       state = (
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>Running</Tooltip>}>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>运行中</Tooltip>}>
           <div className="state state-running"><div style={style} className="runningwave"></div></div>
         </OverlayTrigger>
       );
     } else if (container.State.Restarting) {
       state = (
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>Restarting</Tooltip>}>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>重启中</Tooltip>}>
           <div className="state state-restarting" style={style}></div>
         </OverlayTrigger>
       );
     } else if (container.State.Paused) {
       state = (
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>Paused</Tooltip>}>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>已暂停</Tooltip>}>
           <div className="state state-paused"></div>
         </OverlayTrigger>
       );
     } else if (container.State.ExitCode) {
       state = (
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>Stopped</Tooltip>}>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>已停止</Tooltip>}>
           <div className="state state-stopped"></div>
         </OverlayTrigger>
       );
     } else {
       state = (
-        <OverlayTrigger placement="bottom" overlay={<Tooltip>Stopped</Tooltip>}>
+        <OverlayTrigger placement="bottom" overlay={<Tooltip>停止中</Tooltip>}>
           <div className="state state-stopped"></div>
         </OverlayTrigger>
       );

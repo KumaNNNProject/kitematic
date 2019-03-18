@@ -4,7 +4,7 @@ import {shell} from 'electron';
 
 var ContainerHomeWebPreview = React.createClass({
   handleClickPreview: function () {
-    metrics.track('Opened In Browser', {
+    metrics.track('在浏览器中打开', {
       from: 'preview'
     });
     shell.openExternal('http://' + this.props.ports[this.props.defaultPort].url);
@@ -20,7 +20,7 @@ var ContainerHomeWebPreview = React.createClass({
       <div className="web-preview wrapper">
         <div className="widget">
           <div className="top-bar">
-            <div className="text">Web Preview</div>
+            <div className="text">Web 预览</div>
             <div className="action" onClick={this.handleClickPreview}>
               <span className="icon icon-open-external"></span>
             </div>

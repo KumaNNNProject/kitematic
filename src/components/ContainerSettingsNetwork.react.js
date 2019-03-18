@@ -62,7 +62,7 @@ var ContainerSettingsNetwork = React.createClass({
   },
 
   handleSaveNetworkOptions: function () {
-    metrics.track('Saved Network Options');
+    metrics.track('保存的网络选项');
     let connectedNetworks = [];
     let disconnectedNetworks = [];
     let containerNetworks = this.props.container.NetworkSettings.Networks;
@@ -213,9 +213,9 @@ var ContainerSettingsNetwork = React.createClass({
           <td>{link.alias}</td>
           <td>
             <Router.Link to="container" params={{name: link.container}}>
-              <a className="btn btn-action small">OPEN</a>
+              <a className="btn btn-action small">打开</a>
             </Router.Link>
-            <a name={key} className="btn btn-action small" onClick={this.handleRemoveLink}>REMOVE</a>
+            <a name={key} className="btn btn-action small" onClick={this.handleRemoveLink}>移除</a>
           </td>
         </tr>
       )
@@ -230,34 +230,34 @@ var ContainerSettingsNetwork = React.createClass({
     return (
       <div className="settings-panel">
         <div className="settings-section">
-          <h3>Configure network</h3>
+          <h3>配置网络</h3>
           <table className="table volumes">
             <thead>
               <tr>
                 <th>&nbsp;</th>
-                <th>NAME</th>
-                <th>DRIVER</th>
+                <th>名称</th>
+                <th>驱动程序</th>
               </tr>
             </thead>
             <tbody>
               {networks}
             </tbody>
           </table>
-          { !this.state.usedNetworks.host ? <a className="btn btn-action" disabled={isUpdating} onClick={this.handleSaveNetworkOptions}>Save</a> : null }
-          { this.state.usedNetworks.host ? <span>You cannot configure networks while container connected to host network</span> : null }
+          { !this.state.usedNetworks.host ? <a className="btn btn-action" disabled={isUpdating} onClick={this.handleSaveNetworkOptions}>保存</a> : null }
+          { this.state.usedNetworks.host ? <span>当容器连接到主机网络时，您不能配置网络</span> : null }
         </div>
         <div className="settings-section">
-          <h3>Host network</h3>
-          { !this.state.usedNetworks.host ? <a className="btn btn-action" disabled={isUpdating} onClick={this.handleToggleHostNetwork}>Connect to host network</a> : null }
-          { this.state.usedNetworks.host ? <a className="btn btn-action" disabled={isUpdating} onClick={this.handleToggleHostNetwork}>Disconnect from host network</a> : null }
+          <h3>主机网络</h3>
+          { !this.state.usedNetworks.host ? <a className="btn btn-action" disabled={isUpdating} onClick={this.handleToggleHostNetwork}>连接到主机网络</a> : null }
+          { this.state.usedNetworks.host ? <a className="btn btn-action" disabled={isUpdating} onClick={this.handleToggleHostNetwork}>从主机网络断开</a> : null }
         </div>
         <div className="settings-section">
-          <h3>Links</h3>
+          <h3>链接</h3>
           <table className="table links">
             <thead>
               <tr>
-                <th>NAME</th>
-                <th>ALIAS</th>
+                <th>名称</th>
+                <th>别名</th>
                 <th>&nbsp;</th>
               </tr>
             </thead>
@@ -266,7 +266,7 @@ var ContainerSettingsNetwork = React.createClass({
               <tr>
                 <td>
                   <select className="line" value={this.state.newLink.container} onChange={this.handleNewLinkContainerChange}>
-                    <option disabled value="">Select container</option>
+                    <option disabled value="">选择容器</option>
                     {containerOptions}
                   </select>
                 </td>

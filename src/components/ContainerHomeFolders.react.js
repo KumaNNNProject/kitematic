@@ -16,14 +16,14 @@ var ContainerHomeFolder = React.createClass({
     router: React.PropTypes.func
   },
   handleClickFolder: function (source, destination) {
-    metrics.track('Opened Volume Directory', {
+    metrics.track('打开的卷目录', {
       from: 'home'
     });
 
     if (source.indexOf(util.windowsToLinuxPath(util.home())) === -1) {
       dialog.showMessageBox({
-        message: `Enable all volumes to edit files? This may not work with all database containers.`,
-        buttons: ['Enable Volumes', 'Cancel']
+        message: `启用所有卷以编辑文件? 这可能不适用于所有数据库的容器.`,
+        buttons: ['启用卷', '取消']
       }, (index) => {
         if (index === 0) {
           var mounts = _.clone(this.props.container.Mounts);
@@ -58,7 +58,7 @@ var ContainerHomeFolder = React.createClass({
     }
   },
   handleClickChangeFolders: function () {
-    metrics.track('Viewed Volume Settings', {
+    metrics.track('已查看卷设置', {
       from: 'preview'
     });
     this.context.router.transitionTo('containerSettingsVolumes', {name: this.context.router.getCurrentParams().name});
@@ -83,7 +83,7 @@ var ContainerHomeFolder = React.createClass({
       <div className="folders wrapper">
         <div className="widget">
           <div className="top-bar">
-            <div className="text">Volumes</div>
+            <div className="text">卷</div>
             <div className="action" onClick={this.handleClickChangeFolders}>
               <span className="icon icon-preferences"></span>
             </div>

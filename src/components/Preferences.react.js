@@ -19,7 +19,7 @@ var Preferences = React.createClass({
   },
   handleGoBackClick: function () {
     this.goBack();
-    metrics.track('Went Back From Preferences');
+    metrics.track('从首选项返回');
   },
   handleChangeCloseVMOnQuit: function (e) {
     var checked = e.target.checked;
@@ -27,7 +27,7 @@ var Preferences = React.createClass({
       closeVMOnQuit: checked
     });
     localStorage.setItem('settings.closeVMOnQuit', checked);
-    metrics.track('Toggled Close VM On Quit', {
+    metrics.track('切换 退出时关闭虚拟机', {
       close: checked
     });
   },
@@ -38,7 +38,7 @@ var Preferences = React.createClass({
     });
     localStorage.setItem('settings.useVM', checked);
     util.isNative();
-    metrics.track('Toggled VM or Native settting', {
+    metrics.track('切换 虚拟机或本地设置', {
       vm: checked
     });
   },
@@ -82,7 +82,7 @@ var Preferences = React.createClass({
         nativeSetting = (
             <div className="option">
               <div className="option-name">
-                <label htmlFor="useVM">Use VirtualBox instead of Native on next restart</label>
+                <label htmlFor="useVM">使用VirtualBox替代本地的在下一次重启时</label>
               </div>
               <div className="option-value">
                 <input id="useVM" type="checkbox" checked={this.state.useVM} onChange={this.handleChangeUseVM}/>
@@ -94,7 +94,7 @@ var Preferences = React.createClass({
         vmShutdown = (
             <div className="option">
               <div className="option-name">
-                <label htmlFor="closeVMOnQuit">Shutdown Linux VM on closing Kitematic</label>
+                <label htmlFor="closeVMOnQuit">关闭Linux虚拟机在关闭Kitematic时</label>
               </div>
               <div className="option-value">
                 <input id="closeVMOnQuit" type="checkbox" checked={this.state.closeVMOnQuit} onChange={this.handleChangeCloseVMOnQuit}/>
@@ -105,7 +105,7 @@ var Preferences = React.createClass({
 
       vmSettings = (
           <div>
-            <div className="title">VM Settings</div>
+            <div className="title">虚拟机设置</div>
             {vmShutdown}
             {nativeSetting}
           </div>
@@ -117,7 +117,7 @@ var Preferences = React.createClass({
         <div>
           <div className="option">
             <div className="option-name">
-              <label htmlFor="terminalPath">Terminal path</label>
+              <label htmlFor="terminalPath">终端路径</label>
             </div>
             <div className="option-value">
               <input id="terminalPath" type="text" value={this.state.terminalPath} onChange={this.handleChangeTerminalPath}/>
@@ -130,12 +130,12 @@ var Preferences = React.createClass({
     return (
       <div className="preferences">
         <div className="preferences-content">
-          <a onClick={this.handleGoBackClick}>Go Back</a>
+          <a onClick={this.handleGoBackClick}>返回</a>
           {vmSettings}
-          <div className="title">App Settings</div>
+          <div className="title">应用程序设置</div>
           <div className="option">
             <div className="option-name">
-              <label htmlFor="metricsEnabled">Report anonymous usage analytics</label>
+              <label htmlFor="metricsEnabled">匿名报告使用情况分析</label>
             </div>
             <div className="option-value">
               <input id="metricsEnabled" type="checkbox" checked={this.state.metricsEnabled} onChange={this.handleChangeMetricsEnabled}/>
@@ -143,7 +143,7 @@ var Preferences = React.createClass({
           </div>
           <div className="option">
             <div className="option-name">
-              <label htmlFor="terminalShell">Exec command shell</label>
+              <label htmlFor="terminalShell">执行命令的shell</label>
             </div>
             <div className="option-value">
               <select id="terminalShell" value={this.state.terminalShell} onChange={this.handleChangeTerminalShell}>
@@ -154,7 +154,7 @@ var Preferences = React.createClass({
           </div>
           <div className="option">
             <div className="option-name">
-              <label htmlFor="startLinkedContainers">Start linked containers</label>
+              <label htmlFor="startLinkedContainers">启动时连接容器</label>
             </div>
             <div className="option-value">
               <input id="startLinkedContainers" type="checkbox" checked={this.state.startLinkedContainers} onChange={this.handleChangeStartLinkedContainers}/>

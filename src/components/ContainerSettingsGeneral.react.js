@@ -87,18 +87,18 @@ var ContainerSettingsGeneral = React.createClass({
 
     if (this.props.containers[newName]) {
       this.setState({
-        nameError: 'A container already exists with this name.'
+        nameError: '已存在具有此名称的容器.'
       });
       return;
     }
 
     containerActions.rename(this.props.container.Name, newName);
     this.context.router.transitionTo('containerSettingsGeneral', {name: newName});
-    metrics.track('Changed Container Name');
+    metrics.track('更改的容器名称');
   },
 
   handleSaveEnvVars: function () {
-    metrics.track('Saved Environment Variables');
+    metrics.track('保存的环境变量');
     let list = [];
     _.each(this.state.env, kvp => {
       let [, key, value] = kvp;
@@ -131,7 +131,7 @@ var ContainerSettingsGeneral = React.createClass({
     this.setState({
       env: env
     });
-    metrics.track('Added Pending Environment Variable');
+    metrics.track('添加了挂起的环境变量');
   },
 
   handleRemoveEnvVar: function (index) {
@@ -146,16 +146,16 @@ var ContainerSettingsGeneral = React.createClass({
       env: env
     });
 
-    metrics.track('Removed Environment Variable');
+    metrics.track('删除的环境变量');
   },
 
   handleDeleteContainer: function () {
     dialog.showMessageBox({
-      message: 'Are you sure you want to delete this container?',
-      buttons: ['Delete', 'Cancel']
+      message: '确定要删除此容器吗?',
+      buttons: ['删除', '取消']
     }, index => {
       if (index === 0) {
-        metrics.track('Deleted Container', {
+        metrics.track('已删除容器', {
           from: 'settings',
           type: 'existing'
         });
@@ -172,14 +172,14 @@ var ContainerSettingsGeneral = React.createClass({
     var clipboardStatus;
     var willBeRenamedAs;
     var btnSaveName = (
-      <a className="btn btn-action" onClick={this.handleSaveContainerName} disabled="disabled">Save</a>
+      <a className="btn btn-action" onClick={this.handleSaveContainerName} disabled="disabled">保存</a>
     );
     if (this.state.slugName) {
       willBeRenamedAs = (
-        <p>Will be renamed as: <strong>{this.state.slugName}</strong></p>
+        <p>将重命名为: <strong>{this.state.slugName}</strong></p>
       );
       btnSaveName = (
-        <a className="btn btn-action" onClick={this.handleSaveContainerName}>Save</a>
+        <a className="btn btn-action" onClick={this.handleSaveContainerName}>保存</a>
       );
     } else if (this.state.nameError) {
       willBeRenamedAs = (
@@ -189,22 +189,22 @@ var ContainerSettingsGeneral = React.createClass({
 
     if (this.state.copiedId) {
       clipboardStatus = (
-        <p className="fadeOut"><strong>Copied to Clipboard</strong></p>
+        <p className="fadeOut"><strong>已复制到剪贴板</strong></p>
       );
     }
 
     let containerInfo = (
       <div className="settings-section">
-        <h3>Container Info</h3>
+        <h3>容器信息</h3>
         <div className="container-info-row">
           <div className="label-id">ID</div>
           <input type="text" className="line disabled" defaultValue={this.props.container.Id} disabled></input>
-          <a className="btn btn-action btn-copy" onClick={this.handleCopyContainerId}>Copy</a>
+          <a className="btn btn-action btn-copy" onClick={this.handleCopyContainerId}>复制</a>
           {clipboardStatus}
         </div>
         <div className="container-info-row">
-          <div className="label-name">NAME</div>
-          <input id="input-container-name" type="text" className="line" placeholder="Container Name" defaultValue={this.props.container.Name} onChange={this.handleNameChange} onKeyUp={this.handleNameOnKeyUp}></input>
+          <div className="label-name">名称</div>
+          <input id="input-container-name" type="text" className="line" placeholder="容器名称" defaultValue={this.props.container.Name} onChange={this.handleNameChange} onKeyUp={this.handleNameOnKeyUp}></input>
           {btnSaveName}
           {willBeRenamedAs}
         </div>
@@ -233,19 +233,19 @@ var ContainerSettingsGeneral = React.createClass({
       <div className="settings-panel">
         {containerInfo}
         <div className="settings-section">
-          <h3>Environment Variables</h3>
+          <h3>环境变量</h3>
           <div className="env-vars-labels">
-            <div className="label-key">KEY</div>
-            <div className="label-val">VALUE</div>
+            <div className="label-key">键(KEY)</div>
+            <div className="label-val">值(VALUE)</div>
           </div>
           <div className="env-vars">
             {vars}
           </div>
-          <a className="btn btn-action" disabled={this.props.container.State.Updating} onClick={this.handleSaveEnvVars}>Save</a>
+          <a className="btn btn-action" disabled={this.props.container.State.Updating} onClick={this.handleSaveEnvVars}>保存</a>
         </div>
         <div className="settings-section">
-          <h3>Delete Container</h3>
-          <a className="btn btn-action" onClick={this.handleDeleteContainer}>Delete Container</a>
+          <h3>删除容器</h3>
+          <a className="btn btn-action" onClick={this.handleDeleteContainer}>删除容器</a>
         </div>
       </div>
     );

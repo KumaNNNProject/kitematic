@@ -49,7 +49,7 @@ var ContainerDetailsSubheader = React.createClass({
   },
   showHome: function () {
     if (!this.disableTab()) {
-      metrics.track('Viewed Home', {
+      metrics.track('查看主页', {
         from: 'header'
       });
       this.context.router.transitionTo('containerHome', {name: this.context.router.getCurrentParams().name});
@@ -57,13 +57,13 @@ var ContainerDetailsSubheader = React.createClass({
   },
   showSettings: function () {
     if (!this.disableTab()) {
-      metrics.track('Viewed Settings');
+      metrics.track('查看设置');
       this.context.router.transitionTo('containerSettings', {name: this.context.router.getCurrentParams().name});
     }
   },
   handleRun: function () {
     if (this.props.defaultPort && !this.disableRun()) {
-      metrics.track('Opened In Browser', {
+      metrics.track('在浏览器中打开', {
         from: 'header'
       });
       shell.openExternal(this.props.ports[this.props.defaultPort].url);
@@ -71,19 +71,19 @@ var ContainerDetailsSubheader = React.createClass({
   },
   handleRestart: function () {
     if (!this.disableRestart()) {
-      metrics.track('Restarted Container');
+      metrics.track('已重启容器');
       containerActions.restart(this.props.container.Name);
     }
   },
   handleStop: function () {
     if (!this.disableStop()) {
-      metrics.track('Stopped Container');
+      metrics.track('已停止容器');
       containerActions.stop(this.props.container.Name);
     }
   },
   handleStart: function () {
     if (!this.disableStart()) {
-      metrics.track('Started Container');
+      metrics.track('已启动容器');
       containerActions.start(this.props.container.Name);
     }
   },
@@ -99,7 +99,7 @@ var ContainerDetailsSubheader = React.createClass({
   },
   handleTerminal: function () {
     if (!this.disableTerminal()) {
-      metrics.track('Terminaled Into Container');
+      metrics.track('终端已进入容器');
       var container = this.props.container;
       var shell = ContainerUtil.env(container).reduce((envs, env) => {
         envs[env[0]] = env[1];
@@ -152,14 +152,14 @@ var ContainerDetailsSubheader = React.createClass({
       startStopToggle = (
         <div className={startActionClass}>
           <div className="action-icon start" onClick={this.handleStart}><span className="icon icon-start"></span></div>
-          <div className="btn-label">START</div>
+          <div className="btn-label">启动</div>
         </div>
       );
     } else {
       startStopToggle = (
         <div className={stopActionClass}>
           <div className="action-icon stop" onClick={this.handleStop}><span className="icon icon-stop"></span></div>
-          <div className="btn-label">STOP</div>
+          <div className="btn-label">停止</div>
         </div>
       );
     }
@@ -170,20 +170,20 @@ var ContainerDetailsSubheader = React.createClass({
           {startStopToggle}
           <div className={restartActionClass}>
             <div className="action-icon" onClick={this.handleRestart}><span className="icon icon-restart"></span></div>
-            <div className="btn-label">RESTART</div>
+            <div className="btn-label">重启</div>
           </div>
           <div className={terminalActionClass}>
             <div className="action-icon" onClick={this.handleTerminal}><span className="icon icon-docker-exec"></span></div>
-            <div className="btn-label">EXEC</div>
+            <div className="btn-label">执行</div>
           </div>
           <div className={docsActionClass}>
             <div className="action-icon" onClick={this.handleDocs}><span className="icon icon-open-external"></span></div>
-            <div className="btn-label">DOCS</div>
+            <div className="btn-label">文档</div>
           </div>
         </div>
         <div className="details-subheader-tabs">
-          <span className={tabHomeClasses} onClick={this.showHome}>Home</span>
-          <span className={tabSettingsClasses} onClick={this.showSettings}>Settings</span>
+          <span className={tabHomeClasses} onClick={this.showHome}>主页</span>
+          <span className={tabSettingsClasses} onClick={this.showSettings}>设置</span>
         </div>
       </div>
     );

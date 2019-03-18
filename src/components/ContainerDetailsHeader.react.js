@@ -8,21 +8,21 @@ var ContainerDetailsHeader = React.createClass({
     }
 
     if (this.props.container.State.Updating) {
-      state = <span className="status downloading">UPDATING</span>;
+      state = <span className="status downloading">更新中</span>;
     } else if (this.props.container.State.Stopping) {
-      state = <span className="status running">STOPPING</span>;
+      state = <span className="status running">停止中</span>;
     } else if (this.props.container.State.Paused) {
-      state = <span className="status paused">PAUSED</span>;
+      state = <span className="status paused">已暂停</span>;
     } else if (this.props.container.State.Restarting) {
-      state = <span className="status restarting">RESTARTING</span>;
+      state = <span className="status restarting">重启中</span>;
     } else if (this.props.container.State.Running && !this.props.container.State.ExitCode) {
-      state = <span className="status running">RUNNING</span>;
+      state = <span className="status running">运行中</span>;
     } else if (this.props.container.State.Starting) {
-      state = <span className="status running">STARTING</span>;
+      state = <span className="status running">启动中</span>;
     } else if (this.props.container.State.Downloading) {
-      state = <span className="status downloading">DOWNLOADING</span>;
+      state = <span className="status downloading">下载中</span>;
     } else {
-      state = <span className="status stopped">STOPPED</span>;
+      state = <span className="status stopped">已停止</span>;
     }
     return (
       <div className="header-section">

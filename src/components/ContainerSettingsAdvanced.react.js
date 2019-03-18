@@ -63,14 +63,14 @@ var ContainerSettingsAdvanced = React.createClass({
     return (
       <div className="settings-panel">
         <div className="settings-section">
-          <h3>Advanced Options</h3>
+          <h3>高级选项</h3>
           <div className="checkboxes">
-            <p><label><input type="checkbox" checked={this.state.tty} onChange={this.handleChangeTty}/>Allocate a TTY for this container</label></p>
-            <p><label><input type="checkbox" checked={this.state.openStdin} onChange={this.handleChangeOpenStdin}/>Keep STDIN open even if not attached</label></p>
-            <p><label><input type="checkbox" checked={this.state.privileged} onChange={this.handleChangePrivileged}/>Privileged mode</label></p>
-            <p><label><input type="checkbox" checked={this.state.restartPolicy} onChange={this.handleChangeRestartPolicy}/>Enable 'always' restart policy</label></p>
+            <p><label><input type="checkbox" checked={this.state.tty} onChange={this.handleChangeTty}/>分配一个TTY为此容器</label></p>
+            <p><label><input type="checkbox" checked={this.state.openStdin} onChange={this.handleChangeOpenStdin}/>保持STDIN开放，即使没有连接</label></p>
+            <p><label><input type="checkbox" checked={this.state.privileged} onChange={this.handleChangePrivileged}/>特权模式</label></p>
+            <p><label><input type="checkbox" checked={this.state.restartPolicy} onChange={this.handleChangeRestartPolicy}/>启用"始终"重启策略</label></p>
           </div>
-          <a className="btn btn-action" disabled={this.props.container.State.Updating} onClick={this.handleSaveAdvancedOptions}>Save</a>
+          <a className="btn btn-action" disabled={this.props.container.State.Updating} onClick={this.handleSaveAdvancedOptions}>保存</a>
         </div>
       </div>
     );

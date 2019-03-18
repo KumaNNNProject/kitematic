@@ -38,12 +38,12 @@ var Setup = React.createClass({
   },
 
   handleErrorRemoveRetry: function () {
-    console.log('Deleting VM and trying again.' );
+    console.log('正在删除虚拟机并重试...' );
     setupActions.retry(true);
   },
 
   handleResetSettings: function () {
-    metrics.track('Settings reset', {
+    metrics.track('设置重置', {
       from: 'setup'
     });
     localStorage.removeItem('settings.useVM');
@@ -51,14 +51,14 @@ var Setup = React.createClass({
   },
 
   handleToolBox: function () {
-    metrics.track('Getting toolbox', {
+    metrics.track('获取工具箱(Toolbox)', {
       from: 'setup'
     });
     shell.openExternal('https://www.docker.com/docker-toolbox');
   },
 
   handleLinuxDockerInstall: function () {
-    metrics.track('Opening Linux Docker installation instructions', {
+    metrics.track('打开Linux Docker安装说明', {
       from: 'setup'
     });
     shell.openExternal('http://docs.docker.com/linux/started/');
@@ -76,11 +76,11 @@ var Setup = React.createClass({
   },
 
   renderProgress: function () {
-    let title = 'Starting Docker VM';
-    let descr = 'To run Docker containers on your computer, Kitematic is starting a Linux virtual machine. This may take a minute...';
+    let title = '开启Docker虚拟机';
+    let descr = '运行Docker容器在你的计算机，Kitematic正在启动一个Linux虚拟机。这可能需要一分钟…';
     if (util.isNative()) {
-      title = 'Checking Docker';
-      descr = 'To run Docker containers on your computer, Kitematic is checking the Docker connection.';
+      title = '检查 Docker';
+      descr = '运行Docker容器在你的计算机，Kitematic正在检查 Docker 连接';
     }
     return (
       <div className="setup">
@@ -106,30 +106,30 @@ var Setup = React.createClass({
     if (util.isLinux()) {
       if (!this.state.started) {
         deleteVmAndRetry = (
-          <button className="btn btn-action" onClick={this.handleLinuxDockerInstall}>Install Docker</button>
+          <button className="btn btn-action" onClick={this.handleLinuxDockerInstall}>安装 Docker</button>
         );
       }
     } else if (util.isNative()) {
       deleteVmAndRetry = (
-        <button className="btn btn-action" onClick={this.handleUseVbox}>Use VirtualBox</button>
+        <button className="btn btn-action" onClick={this.handleUseVbox}>使用 VirtualBox</button>
       );
     } else if (this.state.started) {
       deleteVmAndRetry = (
-        <button className="btn btn-action" onClick={this.handleErrorRemoveRetry}>Delete VM &amp; Retry Setup</button>
+        <button className="btn btn-action" onClick={this.handleErrorRemoveRetry}>删除虚拟机(VM) &amp; 重试设置</button>
       );
     } else {
       deleteVmAndRetry = (
-        <button className="btn btn-action" onClick={this.handleToolBox}>Get Toolbox</button>
+        <button className="btn btn-action" onClick={this.handleToolBox}>获取工具箱(Toolbox)</button>
       );
     }
     let usualError = (
       <div className="content">
-        <h4>Setup Error</h4>
-        <h1>We&#39;re Sorry!</h1>
-        <p>There seems to have been an unexpected error with Kitematic:</p>
+        <h4>设置错误</h4>
+        <h1>我们很抱歉!</h1>
+        <p>Kitematic似乎发生了意外错误:</p>
         <p className="error">{this.state.error.message || this.state.error}</p>
         <p className="setup-actions">
-          <button className="btn btn-action" onClick={this.handleErrorRetry}>Retry Setup</button>
+          <button className="btn btn-action" onClick={this.handleErrorRetry}>重试设置</button>
           {{deleteVmAndRetry}}
         </p>
       </div>
@@ -138,20 +138,20 @@ var Setup = React.createClass({
       if (util.isLinux()) {
         usualError = (
           <div className="content">
-            <h1>Setup Initialization</h1>
-            <p>We couldn&apos;t find a native setup - Click the Retry button to check again.</p>
+            <h1>设置初始化</h1>
+            <p>我们找不到本地设置 - 单击重试按钮再次检查。</p>
             <p className="setup-actions">
-              <button className="btn btn-action" onClick={this.handleErrorRetry}>Retry Setup</button>
+              <button className="btn btn-action" onClick={this.handleErrorRetry}>重试设置</button>
             </p>
           </div>
         );
       } else {
         usualError = (
           <div className="content">
-            <h1>Setup Initialization</h1>
-            <p>We couldn&apos;t find a native setup - Click the VirtualBox button to use VirtualBox instead or Retry to check again.</p>
+            <h1>设置初始化</h1>
+            <p>我们找不到本地设置 - 单击VirtualBox按钮使用VirtualBox代替或重试按钮再次检查。</p>
             <p className="setup-actions">
-              <button className="btn btn-action" onClick={this.handleErrorRetry}>Retry Setup</button>
+              <button className="btn btn-action" onClick={this.handleErrorRetry}>重试设置</button>
               {{deleteVmAndRetry}}
             </p>
           </div>
@@ -166,7 +166,7 @@ var Setup = React.createClass({
             <div className="contents">
               <RetinaImage src="install-error.png" checkIfRetinaImgExists={false}/>
               <div className="detail">
-               <a className="btn btn-danger small" onClick={this.handleResetSettings}>reset</a> 
+               <a className="btn btn-danger small" onClick={this.handleResetSettings}>重置</a> 
               </div>
             </div>
           </div>

@@ -22,17 +22,17 @@ var ContainerHomeIpPortsPreview = React.createClass({
       <div className="web-preview wrapper">
         <div className="widget">
           <div className="top-bar">
-            <div className="text">IP & PORTS</div>
+            <div className="text">IP & 端口</div>
             <div className="action" onClick={this.handleClickPortSettings}>
               <span className="icon icon-preferences"></span>
             </div>
           </div>
-          <p>You can access this container using the following IP address and port:</p>
+          <p>您可以访问这个容器使用下面的IP地址和端口:</p>
           <table className="table">
             <thead>
               <tr>
-                <th>DOCKER PORT</th>
-                <th>ACCESS URL</th>
+                <th>DOCKER 端口</th>
+                <th>访问 URL</th>
               </tr>
             </thead>
             <tbody>

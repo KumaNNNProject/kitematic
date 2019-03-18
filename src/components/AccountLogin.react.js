@@ -29,13 +29,13 @@ module.exports = React.createClass({
     let errors = {};
 
     if (validator.isEmail(this.state.username)) {
-      errors.username = 'Must be a valid username (not an email)';
+      errors.username = '必须是有效的用户名(不是电子邮件)';
     } else if (!validator.isLowercase(this.state.username) || !validator.isAlphanumeric(this.state.username) || !validator.isLength(this.state.username, 4, 30)) {
-      errors.username = 'Must be 4-30 lower case letters or numbers';
+      errors.username = '必须是4-30个小写字母或数字';
     }
 
     if (!validator.isLength(this.state.password, 5)) {
-      errors.password = 'Must be at least 5 characters long';
+      errors.password = '必须至少有5个字符长';
     }
 
     return errors;
@@ -51,14 +51,14 @@ module.exports = React.createClass({
 
     if (_.isEmpty(errors)) {
       accountActions.login(this.state.username, this.state.password);
-      metrics.track('Clicked Log In');
+      metrics.track('点击登录');
     }
   },
 
   handleClickSignup: function () {
     if (!this.props.loading) {
       this.replaceWith('signup');
-      metrics.track('Switched to Sign Up');
+      metrics.track('已切换到注册');
     }
   },
 
@@ -70,18 +70,18 @@ module.exports = React.createClass({
     let loading = this.props.loading ? <div className="spinner la-ball-clip-rotate la-dark"><div></div></div> : null;
     return (
       <form className="form-connect">
-        <input ref="usernameInput"maxLength="30" name="username" placeholder="Username" type="text" disabled={this.props.loading} valueLink={this.linkState('username')} onBlur={this.handleBlur}/>
+        <input ref="usernameInput"maxLength="30" name="username" placeholder="用户名" type="text" disabled={this.props.loading} valueLink={this.linkState('username')} onBlur={this.handleBlur}/>
         <p className="error-message">{this.state.errors.username}</p>
-        <input ref="passwordInput" name="password" placeholder="Password" type="password" disabled={this.props.loading} valueLink={this.linkState('password')} onBlur={this.handleBlur}/>
+        <input ref="passwordInput" name="password" placeholder="密码" type="password" disabled={this.props.loading} valueLink={this.linkState('password')} onBlur={this.handleBlur}/>
         <p className="error-message">{this.state.errors.password}</p>
-        <a className="link" onClick={this.handleClickForgotPassword}>Forgot your password?</a>
+        <a className="link" onClick={this.handleClickForgotPassword}>忘记你的密码了吗?</a>
         <p className="error-message">{this.state.errors.detail}</p>
         <div className="submit">
           {loading}
-          <button className="btn btn-action" disabled={this.props.loading} onClick={this.handleLogin} type="submit">Log In</button>
+          <button className="btn btn-action" disabled={this.props.loading} onClick={this.handleLogin} type="submit">登录</button>
         </div>
         <br/>
-        <div className="extra">Don&#39;t have an account yet? <a disabled={this.state.loading} onClick={this.handleClickSignup}>Sign Up</a></div>
+        <div className="extra">还没有一个帐户了吗?<a disabled={this.state.loading} onClick={this.handleClickSignup}>注册</a></div>
       </form>
     );
   }

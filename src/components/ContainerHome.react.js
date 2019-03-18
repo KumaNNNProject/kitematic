@@ -56,20 +56,20 @@ var ContainerHome = React.createClass({
         error = this.props.container.Error;
       } else {
         if (error.indexOf('ETIMEDOUT') !== -1) {
-          error = 'Timeout error - Try and restart your VM by running: \n"docker-machine restart default" in a terminal';
+          error = '超时错误 - 尝试重启你的虚拟机通过运行: \n"docker-machine restart default" 在一个终端';
         }
         if (error.indexOf('ECONNREFUSED') !== -1) {
-          error = 'Is your VM up and running? Check that "docker ps" works in a terminal.';
+          error = '你的虚拟机启动并运行了吗？检查"Docker PS"是否在终端中工作.';
         }
       }
       body = (
         <div className="details-progress error">
-          <h2>We&#39;re sorry. There seems to be an error:</h2>
+          <h2>我们很抱歉,好像有个错误:</h2>
           {error.split('\n').map(i => {
             return <p className="error-message">{i}</p>;
           })}
-          <p>If this error is invalid, please file a ticket on our Github repo.</p>
-          <a className="btn btn-action" onClick={this.handleErrorClick}>File Ticket</a>
+          <p>如果此错误无效，请在我们的GitHub上提交报告.</p>
+          <a className="btn btn-action" onClick={this.handleErrorClick}>文件票证(File Ticket)</a>
         </div>
       );
     } else if (this.props.container && this.props.container.State.Downloading) {
@@ -91,7 +91,7 @@ var ContainerHome = React.createClass({
 
         body = (
           <div className="details-progress">
-            <h2>{total >= 100 ? 'Creating Container' : 'Downloading Image'}</h2>
+            <h2>{total >= 100 ? '正在创建容器' : '正在下载镜像'}</h2>
             <h2>{total}%</h2>
             <div className="container-progress-wrapper">
               <ContainerProgress pBar1={values[0]} pBar2={values[1]} pBar3={values[2]} pBar4={values[3]}/>
@@ -102,14 +102,14 @@ var ContainerHome = React.createClass({
       } else if (this.props.container.State.Waiting) {
         body = (
           <div className="details-progress">
-            <h2>Waiting For Another Download</h2>
+            <h2>正在等待另一个下载</h2>
             <div className="spinner la-ball-clip-rotate la-lg la-dark"><div></div></div>
           </div>
         );
       } else {
         body = (
           <div className="details-progress">
-            <h2>Connecting to Docker Hub</h2>
+            <h2>连接到Docker Hub</h2>
             <div className="spinner la-ball-clip-rotate la-lg la-dark"><div></div></div>
           </div>
         );
