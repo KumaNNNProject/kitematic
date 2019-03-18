@@ -3,6 +3,11 @@ import metrics from '../utils/MetricsUtil';
 import Router from 'react-router';
 import util from '../utils/Util';
 import electron from 'electron';
+//+++
+//Author:KumaNNN
+//GitHub:https://github.com/KumaNNNProject/kitematic
+import {shell} from 'electron';
+//+++
 const remote = electron.remote;
 
 var Preferences = React.createClass({
@@ -72,6 +77,13 @@ var Preferences = React.createClass({
       startLinkedContainers: checked
     });
     localStorage.setItem('settings.startLinkedContainers', checked ? 'true' : 'false');
+  },
+  handleCnClick:function(){
+	//+++ New Function 
+	//+++ Author:KumaNNN
+	//+++ GitHub:https://github.com/KumaNNNProject/kitematic
+	var CNrepoUri = 'https://github.com/KumaNNNProject/kitematic'; 
+	shell.openExternal(CNrepoUri);
   },
   render: function () {
     var vmSettings, vmShutdown, nativeSetting, linuxSettings;
@@ -160,6 +172,12 @@ var Preferences = React.createClass({
               <input id="startLinkedContainers" type="checkbox" checked={this.state.startLinkedContainers} onChange={this.handleChangeStartLinkedContainers}/>
             </div>
           </div>
+		  <br/>
+		  <br/>
+		  <div className="option">Kitematic：&nbsp;v0.17.7</div>
+		  <div className="option">
+			翻译：&nbsp;<div onClick={this.handleCnClick}><a>KumaNNN</a></div>
+		  </div>		  
           {linuxSettings}
         </div>
       </div>
