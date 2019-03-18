@@ -43,7 +43,7 @@ var Setup = React.createClass({
   },
 
   handleResetSettings: function () {
-    metrics.track('设置重置', {
+    metrics.track('Settings reset', {
       from: 'setup'
     });
     localStorage.removeItem('settings.useVM');
@@ -51,14 +51,14 @@ var Setup = React.createClass({
   },
 
   handleToolBox: function () {
-    metrics.track('获取工具箱(Toolbox)', {
+    metrics.track('Getting toolbox', {
       from: 'setup'
     });
     shell.openExternal('https://www.docker.com/docker-toolbox');
   },
 
   handleLinuxDockerInstall: function () {
-    metrics.track('打开Linux Docker安装说明', {
+    metrics.track('Opening Linux Docker installation instructions', {
       from: 'setup'
     });
     shell.openExternal('http://docs.docker.com/linux/started/');

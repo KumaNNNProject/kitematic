@@ -51,14 +51,14 @@ module.exports = React.createClass({
 
     if (_.isEmpty(errors)) {
       accountActions.login(this.state.username, this.state.password);
-      metrics.track('点击登录');
+      metrics.track('Clicked Log In');
     }
   },
 
   handleClickSignup: function () {
     if (!this.props.loading) {
       this.replaceWith('signup');
-      metrics.track('已切换到注册');
+      metrics.track('Switched to Sign Up');
     }
   },
 

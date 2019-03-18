@@ -19,7 +19,7 @@ var Preferences = React.createClass({
   },
   handleGoBackClick: function () {
     this.goBack();
-    metrics.track('从首选项返回');
+    metrics.track('Went Back From Preferences');
   },
   handleChangeCloseVMOnQuit: function (e) {
     var checked = e.target.checked;
@@ -27,7 +27,7 @@ var Preferences = React.createClass({
       closeVMOnQuit: checked
     });
     localStorage.setItem('settings.closeVMOnQuit', checked);
-    metrics.track('切换 退出时关闭虚拟机', {
+    metrics.track('Toggled Close VM On Quit', {
       close: checked
     });
   },
@@ -38,7 +38,7 @@ var Preferences = React.createClass({
     });
     localStorage.setItem('settings.useVM', checked);
     util.isNative();
-    metrics.track('切换 虚拟机或本地设置', {
+    metrics.track('Toggled VM or Native settting', {
       vm: checked
     });
   },

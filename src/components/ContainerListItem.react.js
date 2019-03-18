@@ -22,7 +22,7 @@ var ContainerListItem = React.createClass({
       buttons: ['移除', '取消']
     }, function (index) {
       if (index === 0) {
-        metrics.track('已删除容器', {
+        metrics.track('Deleted Container', {
           from: 'list',
           type: 'existing'
         });

@@ -30,7 +30,7 @@ var ContainerSettingsPorts = React.createClass({
     };
   },
   handleViewLink: function (url) {
-    metrics.track('打开在浏览器', {
+    metrics.track('Opened In Browser', {
       from: 'settings'
     });
     shell.openExternal('http://' + url);

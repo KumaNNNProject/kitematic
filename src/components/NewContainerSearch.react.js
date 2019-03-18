@@ -96,7 +96,7 @@ module.exports = React.createClass({
     });
 
     _searchPromise = Promise.delay(200).then(() => {
-      metrics.track('搜索镜像');
+      metrics.track('Searched for Images');
       _searchPromise = null;
       repositoryActions.search(query, page);
     }).catch(Promise.CancellationError, () => {});
@@ -131,13 +131,13 @@ module.exports = React.createClass({
 
     this.transitionTo('search', {}, {filter: filter});
 
-    metrics.track('筛选结果', {
+    metrics.track('Filtered Results', {
       filter: filter
     });
   },
   handleCheckVerification: function () {
     accountActions.verify();
-    metrics.track('已验证帐户', {
+    metrics.track('Verified Account', {
       from: 'search'
     });
   },

@@ -52,14 +52,14 @@ module.exports = React.createClass({
 
     if (_.isEmpty(errors)) {
       accountActions.signup(this.state.username, this.state.password, this.state.email, this.state.subscribe);
-      metrics.track('点击注册');
+      metrics.track('Clicked Sign Up');
     }
   },
 
   handleClickLogin: function () {
     if (!this.props.loading) {
       this.replaceWith('login');
-      metrics.track('已切换到登录');
+      metrics.track('Switched to Log In');
     }
   },
 

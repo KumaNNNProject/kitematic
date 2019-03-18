@@ -36,12 +36,12 @@ module.exports = React.createClass({
   handleSkip: function () {
     accountActions.skip();
     this.transitionTo('search');
-    metrics.track('跳过登录');
+    metrics.track('Skipped Login');
   },
 
   handleClose: function () {
     this.goBack();
-    metrics.track('关闭登录');
+    metrics.track('Closed Login');
   },
 
   update: function () {

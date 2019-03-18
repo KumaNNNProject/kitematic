@@ -26,7 +26,7 @@ var ContainerSettingsVolumes = React.createClass({
         return;
       }
 
-      metrics.track('选择卷目录');
+      metrics.track('Choose Directory for Volume');
 
       let mounts = _.clone(this.props.container.Mounts);
       _.each(mounts, m => {
@@ -46,7 +46,7 @@ var ContainerSettingsVolumes = React.createClass({
     });
   },
   handleRemoveVolumeClick: function (dockerVol) {
-    metrics.track('已删除卷目录', {
+    metrics.track('Removed Volume Directory', {
       from: 'settings'
     });
 
@@ -67,7 +67,7 @@ var ContainerSettingsVolumes = React.createClass({
     containerActions.update(this.props.container.Name, {Mounts: mounts, HostConfig: hostConfig});
   },
   handleOpenVolumeClick: function (path) {
-    metrics.track('打开的卷目录', {
+    metrics.track('Opened Volume Directory', {
       from: 'settings'
     });
     if (util.isWindows()) {

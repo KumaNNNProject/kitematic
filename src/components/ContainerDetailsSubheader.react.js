@@ -49,7 +49,7 @@ var ContainerDetailsSubheader = React.createClass({
   },
   showHome: function () {
     if (!this.disableTab()) {
-      metrics.track('查看主页', {
+      metrics.track('Viewed Home', {
         from: 'header'
       });
       this.context.router.transitionTo('containerHome', {name: this.context.router.getCurrentParams().name});
@@ -57,13 +57,13 @@ var ContainerDetailsSubheader = React.createClass({
   },
   showSettings: function () {
     if (!this.disableTab()) {
-      metrics.track('查看设置');
+      metrics.track('Viewed Settings');
       this.context.router.transitionTo('containerSettings', {name: this.context.router.getCurrentParams().name});
     }
   },
   handleRun: function () {
     if (this.props.defaultPort && !this.disableRun()) {
-      metrics.track('在浏览器中打开', {
+      metrics.track('Opened In Browser', {
         from: 'header'
       });
       shell.openExternal(this.props.ports[this.props.defaultPort].url);
@@ -71,19 +71,19 @@ var ContainerDetailsSubheader = React.createClass({
   },
   handleRestart: function () {
     if (!this.disableRestart()) {
-      metrics.track('已重启容器');
+      metrics.track('Restarted Container');
       containerActions.restart(this.props.container.Name);
     }
   },
   handleStop: function () {
     if (!this.disableStop()) {
-      metrics.track('已停止容器');
+      metrics.track('Stopped Container');
       containerActions.stop(this.props.container.Name);
     }
   },
   handleStart: function () {
     if (!this.disableStart()) {
-      metrics.track('已启动容器');
+      metrics.track('Started Container');
       containerActions.start(this.props.container.Name);
     }
   },
@@ -99,7 +99,7 @@ var ContainerDetailsSubheader = React.createClass({
   },
   handleTerminal: function () {
     if (!this.disableTerminal()) {
-      metrics.track('终端已进入容器');
+      metrics.track('Terminaled Into Container');
       var container = this.props.container;
       var shell = ContainerUtil.env(container).reduce((envs, env) => {
         envs[env[0]] = env[1];

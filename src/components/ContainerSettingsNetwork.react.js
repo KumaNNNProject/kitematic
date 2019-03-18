@@ -62,7 +62,7 @@ var ContainerSettingsNetwork = React.createClass({
   },
 
   handleSaveNetworkOptions: function () {
-    metrics.track('保存的网络选项');
+    metrics.track('Saved Network Options');
     let connectedNetworks = [];
     let disconnectedNetworks = [];
     let containerNetworks = this.props.container.NetworkSettings.Networks;

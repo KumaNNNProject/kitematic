@@ -4,7 +4,7 @@ import {shell} from 'electron';
 
 var ContainerHomeWebPreview = React.createClass({
   handleClickPreview: function () {
-    metrics.track('在浏览器中打开', {
+    metrics.track('Opened In Browser', {
       from: 'preview'
     });
     shell.openExternal('http://' + this.props.ports[this.props.defaultPort].url);

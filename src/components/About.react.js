@@ -20,7 +20,7 @@ var Preferences = React.createClass({
   },
   handleGoBackClick: function () {
     this.goBack();
-    metrics.track('从关于中返回');
+    metrics.track('Went Back From About');
   },
   render: function () {
     return (

@@ -16,7 +16,7 @@ var ContainerHomeFolder = React.createClass({
     router: React.PropTypes.func
   },
   handleClickFolder: function (source, destination) {
-    metrics.track('打开的卷目录', {
+    metrics.track('Opened Volume Directory', {
       from: 'home'
     });
 
@@ -58,7 +58,7 @@ var ContainerHomeFolder = React.createClass({
     }
   },
   handleClickChangeFolders: function () {
-    metrics.track('已查看卷设置', {
+    metrics.track('Viewed Volume Settings', {
       from: 'preview'
     });
     this.context.router.transitionTo('containerSettingsVolumes', {name: this.context.router.getCurrentParams().name});

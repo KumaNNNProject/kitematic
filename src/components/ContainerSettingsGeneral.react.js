@@ -94,11 +94,11 @@ var ContainerSettingsGeneral = React.createClass({
 
     containerActions.rename(this.props.container.Name, newName);
     this.context.router.transitionTo('containerSettingsGeneral', {name: newName});
-    metrics.track('更改的容器名称');
+    metrics.track('Changed Container Name');
   },
 
   handleSaveEnvVars: function () {
-    metrics.track('保存的环境变量');
+    metrics.track('aved Environment Variables');
     let list = [];
     _.each(this.state.env, kvp => {
       let [, key, value] = kvp;
@@ -131,7 +131,7 @@ var ContainerSettingsGeneral = React.createClass({
     this.setState({
       env: env
     });
-    metrics.track('添加了挂起的环境变量');
+    metrics.track('Added Pending Environment Variable');
   },
 
   handleRemoveEnvVar: function (index) {
@@ -146,7 +146,7 @@ var ContainerSettingsGeneral = React.createClass({
       env: env
     });
 
-    metrics.track('删除的环境变量');
+    metrics.track('Removed Environment Variable');
   },
 
   handleDeleteContainer: function () {
@@ -155,7 +155,7 @@ var ContainerSettingsGeneral = React.createClass({
       buttons: ['删除', '取消']
     }, index => {
       if (index === 0) {
-        metrics.track('已删除容器', {
+        metrics.track('Deleted Container', {
           from: 'settings',
           type: 'existing'
         });

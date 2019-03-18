@@ -30,7 +30,7 @@ var ContainerHomePreview = React.createClass({
   },
 
   handleClickPortSettings: function () {
-    metrics.track('查看端口设置', {
+    metrics.track('Viewed Port Settings', {
       from: 'preview'
     });
     this.context.router.transitionTo('containerSettingsPorts', {name: this.context.router.getCurrentParams().name});
